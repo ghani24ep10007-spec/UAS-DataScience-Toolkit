@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAS Data Science - Rizqi Ghani</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            /* PERBAIKAN: Gunakan tanda strip (-), bukan garis bawah (_) */
+            justify-content: center; 
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .terminal {
+            width: 80%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .header {
+            border-bottom: 1px solid #00ff41;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: flex;
+            /* PERBAIKAN: Gunakan tanda strip (-) */
+            justify-content: space-between; 
+        }
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid #00ff41; 
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            width: 0;
+            animation-fill-mode: forwards;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff41; }
+        }
+        .btn-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .btn {
+            background: transparent;
+            color: #00ff41;
+            border: 1px solid #00ff41;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            margin: 0 10px;
+            cursor: pointer;
+            display: inline-block; /* Tambahan agar tombol rapi */
+        }
+        .btn:hover {
+            background: #00ff41;
+            color: #000;
+            box-shadow: 0 0 15px #00ff41;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="header">
+            <span>root@rizqi-ghani-server:~# ./uas_project.py</span>
+            <span>🟢 ONLINE</span>
+        </div>
+        
+        <div class="content">
+            <p id="line1" class="hidden">Initializing Integrated Data Science Toolkit...</p>
+            <p id="line2" class="hidden">> Developer: <span style="color:white">Rizqi Ghani Adinata</span></p>
+            <p id="line3" class="hidden">> Prodi: Sistem Informasi (Semester 3)</p>
+            <p id="line4" class="hidden">> Target: Presentasi Pak Abdul Haq</p>
+            <p id="line5" class="hidden">----------------------------------------</p>
+            <p id="line6" class="hidden">> Status: <span style="color:cyan">SYSTEM READY!</span></p>
+            
+            <div class="btn-container hidden" id="buttons">
+                <a href="https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit" class="btn" target="_blank">📂 LIHAT SOURCE CODE</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const lines = ['line1', 'line2', 'line3', 'line4', 'line5', 'line6', 'buttons'];
+        let delay = 500;
+
+        lines.forEach((id, index) => {
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                element.classList.remove('hidden');
+                
+                if(id !== 'buttons') {
+                    element.classList.add('typing-effect');
+                    // Menghilangkan kursor kedip setelah selesai mengetik agar rapi
+                    setTimeout(() => {
+                        element.style.borderRight = "none";
+                    }, 2000);
+                }
+            }, delay);
+            delay += 1000; // Mengatur kecepatan muncul baris
+        });
+    </script>
+</body>
+</html>
