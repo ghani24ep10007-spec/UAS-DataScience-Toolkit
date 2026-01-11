@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UAS Data Science Profile - Rizqi Ghani</title>
+    <title>UAS Data Science Toolkit - Rizqi Ghani</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- BACKGROUND OTOMATIS (TANPA FILE GAMBAR) --- */
+        /* --- BACKGROUND OTOMATIS (SAMA SEPERTI SEBELUMNYA) --- */
         body {
             margin: 0;
             height: 100vh;
@@ -18,7 +18,6 @@
             color: #00f7ff;
             font-family: 'Share Tech Mono', monospace;
             overflow: hidden;
-            /* Membuat pola Grid Cyberpunk dengan CSS */
             background-image: 
                 linear-gradient(rgba(0, 247, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 247, 255, 0.03) 1px, transparent 1px),
@@ -26,132 +25,140 @@
             background-size: 50px 50px, 50px 50px, 100% 100%;
         }
 
-        /* Elemen Dekorasi Sirkuit (Garis-garis Hiasan) */
-        .circuit-line {
-            position: absolute;
-            background: rgba(0, 247, 255, 0.1);
-            z-index: -1;
-        }
-        .line-1 { width: 100%; height: 1px; top: 20%; left: 0; }
-        .line-2 { width: 1px; height: 100%; top: 0; left: 20%; }
-        .line-3 { width: 100%; height: 1px; bottom: 20%; left: 0; }
-        .line-4 { width: 1px; height: 100%; top: 0; right: 20%; }
+        /* Garis Hiasan */
+        .circuit-line { position: absolute; background: rgba(0, 247, 255, 0.1); z-index: -1; }
+        .line-1 { width: 100%; height: 1px; top: 15%; left: 0; }
+        .line-2 { width: 1px; height: 100%; top: 0; left: 15%; }
+        .line-3 { width: 100%; height: 1px; bottom: 15%; left: 0; }
+        .line-4 { width: 1px; height: 100%; top: 0; right: 15%; }
 
         .container {
-            text-align: center;
-            z-index: 10;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: bounceIn 1s ease-out;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        /* --- KOTAK HUD UTAMA --- */
+        /* --- KOTAK UTAMA (HUD) --- */
         .hud-panel {
-            background: rgba(2, 10, 24, 0.85);
+            background: rgba(2, 10, 24, 0.9);
             border: 2px solid #00f7ff;
-            /* Efek sudut terpotong ala Sci-Fi */
-            clip-path: polygon(
-                20px 0, 100% 0, 
-                100% calc(100% - 20px), calc(100% - 20px) 100%, 
-                0 100%, 0 20px
-            );
-            padding: 2px; /* Jarak untuk border ganda */
             box-shadow: 0 0 30px rgba(0, 247, 255, 0.2);
             width: 90%;
-            max-width: 600px;
+            max-width: 800px; /* Lebar diperbesar agar muat banyak teks */
+            height: 80vh; /* Tinggi fix agar pas di layar */
+            display: flex;
+            flex-direction: column;
             position: relative;
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
         }
 
-        .hud-inner {
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            padding: 20px;
-            background: linear-gradient(180deg, rgba(0,247,255,0.05) 0%, rgba(0,0,0,0) 100%);
-            clip-path: polygon(
-                20px 0, 100% 0, 
-                100% calc(100% - 20px), calc(100% - 20px) 100%, 
-                0 100%, 0 20px
-            );
-        }
-
-        /* HEADER */
         .hud-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #00f7ff;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            padding: 15px 25px;
+            background: rgba(0, 247, 255, 0.1);
             font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
             font-size: 1.2rem;
-            text-shadow: 0 0 10px #00f7ff;
+            letter-spacing: 1px;
+            flex-shrink: 0; /* Header tidak boleh mengecil */
         }
 
-        /* KONTEN TEKS */
+        /* --- AREA KONTEN SCROLLABLE --- */
         .hud-content {
+            padding: 25px;
+            overflow-y: auto; /* Agar bisa discroll */
+            flex-grow: 1;
             text-align: left;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1rem;
+            line-height: 1.6;
+            
+            /* Scrollbar Keren */
+            scrollbar-width: thin;
+            scrollbar-color: #00f7ff #020a18;
         }
 
-        .label { color: rgba(0, 247, 255, 0.7); display: inline-block; width: 100px;}
-        .value { color: #fff; font-weight: bold; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+        /* Custom Scrollbar Webkit */
+        .hud-content::-webkit-scrollbar { width: 8px; }
+        .hud-content::-webkit-scrollbar-track { background: #020a18; }
+        .hud-content::-webkit-scrollbar-thumb { background: #00f7ff; border-radius: 4px; }
+
+        /* Typography Styles */
+        h1 { font-family: 'Orbitron', sans-serif; color: #fff; margin-bottom: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.5); font-size: 1.5rem; }
+        h2 { border-bottom: 1px solid rgba(0,247,255,0.3); padding-bottom: 5px; margin-top: 25px; color: #00ff41; font-size: 1.2rem; }
+        h3 { color: #00f7ff; font-size: 1.1rem; margin-top: 15px; margin-bottom: 5px; }
+        p { color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; }
         
-        .status-box {
-            margin-top: 20px;
-            border: 1px dashed #00ff41;
-            color: #00ff41;
+        .highlight { color: #fff; font-weight: bold; }
+        
+        /* List Styles */
+        ul { padding-left: 20px; color: rgba(255, 255, 255, 0.8); }
+        li { margin-bottom: 5px; }
+        li::marker { color: #00f7ff; content: ">> "; }
+
+        /* Code Block Style */
+        .code-box {
+            background: #000;
+            border: 1px dashed #00f7ff;
             padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            background: rgba(0, 255, 65, 0.05);
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-            animation: pulse 2s infinite;
+            font-family: 'Courier New', monospace;
+            color: #00ff41;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            word-break: break-all;
+            user-select: all; /* Agar mudah dicopy */
         }
 
-        /* TOMBOL BESAR */
+        /* Identity Grid */
+        .identity-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px 20px;
+            background: rgba(0, 247, 255, 0.05);
+            padding: 15px;
+            border-left: 3px solid #00f7ff;
+            margin-bottom: 20px;
+        }
+        .id-label { color: #00f7ff; font-weight: bold; }
+
+        /* Buttons */
+        .btn-container {
+            padding: 20px;
+            border-top: 1px solid rgba(0,247,255,0.3);
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            flex-shrink: 0;
+        }
+        
         .main-btn {
-            margin-top: 40px;
             display: inline-block;
             text-decoration: none;
             color: #020a18;
             background: #00f7ff;
             font-family: 'Orbitron', sans-serif;
             font-weight: bold;
-            padding: 15px 40px;
-            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+            padding: 12px 30px;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
             transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
-            letter-spacing: 1px;
-            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
         }
+        .main-btn:hover { background: #fff; box-shadow: 0 0 30px rgba(0, 247, 255, 0.8); transform: translateY(-2px); }
 
-        .main-btn:hover {
-            background: #fff;
-            box-shadow: 0 0 40px rgba(0, 247, 255, 0.8);
-            transform: translateY(-3px);
-        }
+        /* Footer */
+        .footer { font-size: 0.8rem; color: #555; margin-top: 10px; }
 
-        /* ANIMASI */
-        @keyframes bounceIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            60% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-        @keyframes pulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
+        /* Animation */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* HP COMPATIBILITY */
+        /* Mobile Responsive */
         @media (max-width: 600px) {
-            .hud-panel { width: 95%; }
-            .hud-header { font-size: 1rem; }
-            .hud-content { font-size: 0.95rem; }
-            .label { display: block; width: 100%; color: #00f7ff; margin-top: 10px;}
+            .hud-panel { height: 90vh; width: 95%; }
+            h1 { font-size: 1.2rem; }
+            .identity-grid { grid-template-columns: 1fr; gap: 5px; }
         }
     </style>
 </head>
@@ -164,40 +171,75 @@
 
     <div class="container">
         <div class="hud-panel">
-            <div class="hud-inner">
-                <div class="hud-header">
-                    <div><i class="fas fa-id-card"></i> IDENTITY</div>
-                    <div><i class="fas fa-wifi"></i> ONLINE</div>
+            <div class="hud-header">
+                <div><i class="fas fa-terminal"></i> PROJECT DOCUMENTATION</div>
+                <div style="color: #00ff41;"><i class="fas fa-circle-notch fa-spin"></i> LIVE</div>
+            </div>
+
+            <div class="hud-content">
+                
+                <h1>Integrated Data Science & Mathematics Toolkit 🧮🤖</h1>
+                <p style="color: #00f7ff; font-style: italic;">UAS Semester 3 - Interaksi Manusia & Komputer</p>
+                <p>Proyek ini adalah aplikasi berbasis CLI (Command Line Interface) yang mengintegrasikan modul Matematika Murni dan Machine Learning dengan antarmuka interaktif menggunakan Python.</p>
+
+                <h2>👤 Identitas Pengembang</h2>
+                <div class="identity-grid">
+                    <span class="id-label">Nama:</span>
+                    <span class="highlight">Rizqi Ghani Adinata</span>
+                    
+                    <span class="id-label">Prodi:</span>
+                    <span class="highlight">Sistem Informasi</span>
+                    
+                    <span class="id-label">Dosen:</span>
+                    <span class="highlight">Bapak Abdul Haq</span>
                 </div>
 
-                <div class="hud-content">
-                    <div>
-                        <span class="label">Developer:</span>
-                        <span class="value">Rizqi Ghani Adinata</span>
-                    </div>
-                    <div>
-                        <span class="label">Prodi:</span>
-                        <span class="value">Sistem Informasi (Smtr 3)</span>
-                    </div>
-                    <div>
-                        <span class="label">Project:</span>
-                        <span class="value">UAS Data Science & Math</span>
-                    </div>
-                    <div>
-                        <span class="label">Dosen:</span>
-                        <span class="value">Bapak Abdul Haq</span>
-                    </div>
+                <h2>🚀 Fitur Utama</h2>
+                
+                <h3>1. Modul Matematika</h3>
+                <ul>
+                    <li>Kalkulator Volume Bola (dengan validasi input).</li>
+                    <li>Pencari Akar Persamaan Kuadrat.</li>
+                    <li>Penghitung Determinan Matriks (Algoritma Rekursif).</li>
+                </ul>
 
-                    <div class="status-box">
-                        <i class="fas fa-check-circle"></i> SYSTEM READY FOR PRESENTATION
-                    </div>
+                <h3>2. Modul Machine Learning</h3>
+                <ul>
+                    <li>Linear Regression (Scipy Stats).</li>
+                    <li>Polynomial Regression (Numpy Poly1d).</li>
+                    <li>K-Nearest Neighbors (KNN) pada Dataset Iris.</li>
+                    <li>Logistic Regression dengan Visualisasi Contour Plot.</li>
+                </ul>
+
+                <h3>3. Interaktivitas</h3>
+                <ul>
+                    <li>Menggunakan Pop-up Window (Tkinter) untuk notifikasi user.</li>
+                    <li>Visualisasi Grafik interaktif menggunakan Matplotlib.</li>
+                </ul>
+
+                <h2>🛠️ Cara Menjalankan</h2>
+                <p>Pastikan Python sudah terinstall, lalu jalankan perintah berikut di terminal:</p>
+
+                <p>1. Clone repository ini:</p>
+                <div class="code-box">git clone https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit.git</div>
+
+                <p>2. Install library yang dibutuhkan:</p>
+                <div class="code-box">pip install -r requirements.txt</div>
+
+                <p>3. Jalankan program:</p>
+                <div class="code-box">python "presentasi uas.py"</div>
+
+                <div class="footer" style="text-align: center; margin-top: 30px; border-top: 1px solid #333; padding-top: 10px;">
+                    Dibuat dengan ❤️ menggunakan Python 3.13
                 </div>
             </div>
-        </div>
 
-        <a href="https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit" class="main-btn">
-            <i class="fab fa-github"></i> BUKA SOURCE CODE
-        </a>
+            <div class="btn-container">
+                <a href="https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit" class="main-btn" target="_blank">
+                    <i class="fab fa-github"></i> LIHAT SOURCE CODE
+                </a>
+            </div>
+        </div>
     </div>
 
 </body>
