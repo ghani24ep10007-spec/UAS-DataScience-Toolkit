@@ -6,7 +6,7 @@
     <title>UAS Data Science - Rizqi Ghani</title>
     <style>
         body {
-            background-color: #000;
+            background-color: #050505;
             color: #00ff41;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
@@ -16,169 +16,203 @@
             align-items: center;
             height: 100vh;
         }
-        /* Matrix Background */
+
+        /* CRT SCANLINE EFFECT */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+            z-index: 999;
+            pointer-events: none;
+            animation: scroll 10s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        /* MATRIX CANVAS */
         canvas {
             position: absolute;
             top: 0;
             left: 0;
             z-index: 1;
+            opacity: 0.8;
         }
-        .container {
+
+        /* MAIN TERMINAL CONTAINER */
+        .terminal-window {
             z-index: 10;
             position: relative;
-            background: rgba(0, 0, 0, 0.85);
-            border: 1px solid #00ff41;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
-            padding: 40px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 700px;
-            text-align: left;
-            backdrop-filter: blur(5px);
+            background: rgba(10, 10, 10, 0.9);
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.15), inset 0 0 20px rgba(0,255,65,0.05);
+            padding: 0;
+            border-radius: 10px;
+            width: 85%;
+            max-width: 800px;
+            overflow: hidden;
         }
-        .header {
-            border-bottom: 2px solid #00ff41;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+
+        .terminal-header {
+            background: #00ff41;
+            color: #000;
+            padding: 5px 15px;
+            font-weight: bold;
             display: flex;
             justify-content: space-between;
-            font-weight: bold;
-            font-size: 0.9rem;
+            align-items: center;
         }
-        h1 {
-            margin: 0 0 10px 0;
-            font-size: 1.8rem;
-            text-shadow: 0 0 10px #00ff41;
+
+        .terminal-body {
+            padding: 40px;
+            min-height: 300px;
         }
-        .typing {
+
+        /* GLITCH TEXT EFFECT */
+        h1.glitch {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 2px 2px 0px #ff00ff;
+            animation: glitch 1s infinite alternate-reverse;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px 0px #ff00ff; transform: translate(0); }
+            20% { text-shadow: -2px -2px 0px #00ffff; transform: translate(-2px, 2px); }
+            40% { text-shadow: 2px -2px 0px #ff00ff; transform: translate(2px, -2px); }
+            100% { text-shadow: -2px 2px 0px #00ffff; transform: translate(0); }
+        }
+
+        .console-line {
+            margin-bottom: 10px;
             font-size: 1.1rem;
-            line-height: 1.8;
-            min-height: 150px;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
         }
-        .btn-container {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .btn {
+        
+        .active-line {
+            border-left: 3px solid #00ff41;
             background: rgba(0, 255, 65, 0.1);
+        }
+
+        .btn {
+            background: transparent;
             color: #00ff41;
             border: 1px solid #00ff41;
-            padding: 12px 25px;
+            padding: 10px 30px;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 20px;
         }
         .btn:hover {
             background: #00ff41;
             color: #000;
-            box-shadow: 0 0 20px #00ff41;
-            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ff41;
+            cursor: pointer;
         }
-        .hidden { opacity: 0; }
-        .fade-in { animation: fadeIn 2s forwards; }
-        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
 
+    <div class="scanlines"></div>
     <canvas id="matrix"></canvas>
 
-    <div class="container fade-in">
-        <div class="header">
-            <span>USER: rizqi@sistem-informasi:~</span>
-            <span>STATUS: <span style="color:#0f0">CONNECTED</span></span>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <span>root@rizqi-ws:~</span>
+            <span>UAS_FINAL_PROJECT.exe</span>
         </div>
         
-        <h1>DATA SCIENCE TOOLKIT v2.0</h1>
-        
-        <div class="typing" id="console-output">
+        <div class="terminal-body">
+            <h1 class="glitch">SYSTEM ONLINE</h1>
+            <div id="output"></div>
+            
+            <div id="controls" style="display:none; text-align:center; border-top: 1px solid #333; padding-top:20px;">
+                <p>Access Granted. Environment Ready.</p>
+                <a href="https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit" target="_blank" class="btn">📂 ACCESS REPOSITORY</a>
             </div>
-
-        <div class="btn-container hidden" id="action-buttons">
-            <a href="https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit" target="_blank" class="btn">📂 Source Code</a>
-            <a href="#" onclick="alert('Silakan jalankan file Python untuk memulai aplikasi CLI!')" class="btn">🚀 Launch App</a>
         </div>
     </div>
 
     <script>
-        // --- 1. SCRIPT MATRIX RAIN ---
+        // --- MATRIX RAIN ---
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
-        const fontSize = 16;
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%";
+        const fontSize = 14;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
-        function drawMatrix() {
+        function draw() {
             ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#0F0";
             ctx.font = fontSize + "px Courier New";
-
             for (let i = 0; i < drops.length; i++) {
-                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 33);
+        setInterval(draw, 33);
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // --- 2. SCRIPT TYPING EFFECT ---
-        const textLines = [
-            "> Initializing System Kernel...",
-            "> Loading Modules: NumPy, Pandas, Scikit-Learn...",
-            "> User Detected: Rizqi Ghani Adinata (24EP10007)",
-            "> Target: UAS Interaksi Manusia & Komputer",
-            "> Dosen: Bapak Abdul Haq",
-            "> System Ready. Waiting for input..."
+        // --- TYPING SCRIPT ---
+        const lines = [
+            "> Initializing Kernel v3.0...",
+            "> User: Rizqi Ghani Adinata (24EP10007)",
+            "> Prodi: Sistem Informasi - Semester 3",
+            "> Loading Modules: Pandas, Seaborn, Scikit-Learn...",
+            "> Security Check: PASS",
+            "> Connection to Server: STABLE"
         ];
 
-        const outputDiv = document.getElementById('console-output');
-        const btnContainer = document.getElementById('action-buttons');
-        let lineIndex = 0;
-        let charIndex = 0;
+        let lineIdx = 0;
+        let charIdx = 0;
+        const output = document.getElementById("output");
 
-        function typeWriter() {
-            if (lineIndex < textLines.length) {
-                if (charIndex === 0) {
-                    outputDiv.innerHTML += "<p>"; 
+        function type() {
+            if (lineIdx < lines.length) {
+                if (charIdx === 0) {
+                    const p = document.createElement("div");
+                    p.className = "console-line active-line";
+                    p.id = "line-" + lineIdx;
+                    output.appendChild(p);
+                    // Remove active class from previous
+                    if(lineIdx > 0) document.getElementById("line-" + (lineIdx-1)).classList.remove("active-line");
                 }
-                
-                outputDiv.lastElementChild.innerHTML += textLines[lineIndex].charAt(charIndex);
-                charIndex++;
-
-                if (charIndex < textLines[lineIndex].length) {
-                    setTimeout(typeWriter, 30); // Kecepatan ketik
-                } else {
-                    outputDiv.innerHTML += "</p>";
-                    lineIndex++;
-                    charIndex = 0;
-                    setTimeout(typeWriter, 400); // Jeda antar baris
+                document.getElementById("line-" + lineIdx).textContent += lines[lineIdx].charAt(charIdx);
+                charIdx++;
+                if (charIdx < lines[lineIdx].length) setTimeout(type, 30);
+                else {
+                    lineIdx++;
+                    charIdx = 0;
+                    setTimeout(type, 500);
                 }
             } else {
-                btnContainer.classList.remove('hidden');
-                btnContainer.classList.add('fade-in');
+                document.getElementById("controls").style.display = "block";
+                document.querySelector("h1").classList.remove("glitch"); // Stop glitch after load
+                document.querySelector("h1").textContent = "DATA SCIENCE TOOLKIT v3.0";
             }
         }
-        
-        setTimeout(typeWriter, 1000);
+        setTimeout(type, 1000);
     </script>
 </body>
 </html>
