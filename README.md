@@ -2,7 +2,7 @@
 
 **UAS Semester 3 - Interaksi Manusia & Komputer**
 
-Proyek ini adalah aplikasi berbasis CLI (Command Line Interface) yang mengintegrasikan modul Matematika Murni dan Machine Learning dengan antarmuka interaktif menggunakan Python.
+Proyek ini adalah aplikasi berbasis CLI (Command Line Interface) yang mengintegrasikan modul Data Science, Machine Learning, dan NLP dengan antarmuka interaktif.
 
 ---
 
@@ -12,23 +12,22 @@ Proyek ini adalah aplikasi berbasis CLI (Command Line Interface) yang mengintegr
 * **Dosen Pengampu:** Bapak Abdul Haq
 
 ## 🚀 Fitur Utama
-1.  **Modul Matematika:**
-    * Kalkulator Volume Bola (dengan validasi input).
-    * Pencari Akar Persamaan Kuadrat.
-    * Penghitung Determinan Matriks (Algoritma Rekursif).
-2.  **Modul Machine Learning:**
-    * Linear Regression (Scipy Stats).
-    * Polynomial Regression (Numpy Poly1d).
-    * K-Nearest Neighbors (KNN) pada Dataset Iris.
-    * Logistic Regression dengan Visualisasi Contour Plot.
-3.  **Interaktivitas:**
-    * Menggunakan Pop-up Window (Tkinter) untuk notifikasi user.
-    * Visualisasi Grafik menggunakan Matplotlib.
+1.  **Data Processing:**
+    * Data Cleaning & Missing Value Handling (Pandas).
+2.  **Machine Learning:**
+    * **K-Means Clustering:** Unsupervised Learning untuk pengelompokan data.
+    * **Confusion Matrix:** Evaluasi model Supervised Learning (Logistic Regression).
+3.  **Natural Language Processing (NLP):**
+    * **Sentiment Analysis:** Deteksi emosi positif/negatif pada teks.
+    * **WordCloud Diagram:** Visualisasi kata yang paling sering muncul.
+4.  **System:**
+    * Login System & Audit Log (SQLite Database).
+    * PDF Reporting Generator.
 
 ## 🛠️ Cara Menjalankan
-1.  Clone repository ini:
+1.  Pastikan terminal berada di folder proyek:
     ```bash
-    git clone [https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit.git](https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit.git)
+    cd "lokasi/folder/kamu"
     ```
 2.  Install library yang dibutuhkan:
     ```bash
@@ -36,8 +35,9 @@ Proyek ini adalah aplikasi berbasis CLI (Command Line Interface) yang mengintegr
     ```
 3.  Jalankan program:
     ```bash
-    python "presentasi uas.py"
+    python UAS_Pro_Rizqi.py
     ```
+    *(Username: **admin**, Password: **admin123**)*
 
 ---
 *Dibuat dengan ❤️ menggunakan Python 3.13*

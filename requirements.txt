@@ -6,3 +6,7 @@ scipy
 seaborn
 colorama
 tabulate
+openpyxl
+wordcloud
+textblob
+fpdf

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,13 +25,11 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(
-                to bottom,
-                rgba(255,255,255,0),
-                rgba(255,255,255,0) 50%,
-                rgba(0,0,0,0.2) 50%,
-                rgba(0,0,0,0.2)
-            );
+            background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(0, 0, 0, 0.2) 50%,
+                    rgba(0, 0, 0, 0.2));
             background-size: 100% 4px;
             z-index: 999;
             pointer-events: none;
@@ -38,8 +37,13 @@
         }
 
         @keyframes scroll {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 0 100%;
+            }
         }
 
         /* MATRIX CANVAS */
@@ -57,7 +61,7 @@
             position: relative;
             background: rgba(10, 10, 10, 0.9);
             border: 2px solid #00ff41;
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.15), inset 0 0 20px rgba(0,255,65,0.05);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.15), inset 0 0 20px rgba(0, 255, 65, 0.05);
             padding: 0;
             border-radius: 10px;
             width: 85%;
@@ -90,10 +94,25 @@
         }
 
         @keyframes glitch {
-            0% { text-shadow: 2px 2px 0px #ff00ff; transform: translate(0); }
-            20% { text-shadow: -2px -2px 0px #00ffff; transform: translate(-2px, 2px); }
-            40% { text-shadow: 2px -2px 0px #ff00ff; transform: translate(2px, -2px); }
-            100% { text-shadow: -2px 2px 0px #00ffff; transform: translate(0); }
+            0% {
+                text-shadow: 2px 2px 0px #ff00ff;
+                transform: translate(0);
+            }
+
+            20% {
+                text-shadow: -2px -2px 0px #00ffff;
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                text-shadow: 2px -2px 0px #ff00ff;
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                text-shadow: -2px 2px 0px #00ffff;
+                transform: translate(0);
+            }
         }
 
         .console-line {
@@ -102,7 +121,7 @@
             border-left: 3px solid transparent;
             padding-left: 10px;
         }
-        
+
         .active-line {
             border-left: 3px solid #00ff41;
             background: rgba(0, 255, 65, 0.1);
@@ -119,6 +138,7 @@
             display: inline-block;
             margin-top: 20px;
         }
+
         .btn:hover {
             background: #00ff41;
             color: #000;
@@ -127,6 +147,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="scanlines"></div>
@@ -137,14 +158,15 @@
             <span>root@rizqi-ws:~</span>
             <span>UAS_FINAL_PROJECT.exe</span>
         </div>
-        
+
         <div class="terminal-body">
             <h1 class="glitch">SYSTEM ONLINE</h1>
             <div id="output"></div>
-            
+
             <div id="controls" style="display:none; text-align:center; border-top: 1px solid #333; padding-top:20px;">
                 <p>Access Granted. Environment Ready.</p>
-                <a href="https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit" target="_blank" class="btn">📂 ACCESS REPOSITORY</a>
+                <a href="https://github.com/ghani24ep10007-spec/UAS-DataScience-Toolkit" target="_blank" class="btn">📂
+                    ACCESS REPOSITORY</a>
             </div>
         </div>
     </div>
@@ -196,7 +218,7 @@
                     p.id = "line-" + lineIdx;
                     output.appendChild(p);
                     // Remove active class from previous
-                    if(lineIdx > 0) document.getElementById("line-" + (lineIdx-1)).classList.remove("active-line");
+                    if (lineIdx > 0) document.getElementById("line-" + (lineIdx - 1)).classList.remove("active-line");
                 }
                 document.getElementById("line-" + lineIdx).textContent += lines[lineIdx].charAt(charIdx);
                 charIdx++;
@@ -215,4 +237,5 @@
         setTimeout(type, 1000);
     </script>
 </body>
+
 </html>
