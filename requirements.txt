@@ -4,4 +4,5 @@ matplotlib
 scikit-learn
 scipy
 seaborn
-tk
+colorama
+tabulate
