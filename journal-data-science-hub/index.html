@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pusat belajar jurnal ilmiah dan Data Science dari dasar hingga praktik.">
+<title>Journal & Data Science Learning Hub</title>
+<style>
+:root{--bg:#0b1220;--panel:#121e31;--panel2:#17263d;--ink:#edf4ff;--muted:#a8b7cc;--line:#2b3b53;--accent:#78e0c3;--blue:#8db7ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#1c3554 0,transparent 32%),var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{width:min(1120px,92%);margin:auto}.hero{padding:64px 0 36px}.eyebrow{color:var(--accent);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
+h1{font-size:clamp(2.2rem,6vw,4.3rem);line-height:1.05;max-width:820px;margin:16px 0}h2{line-height:1.2}p{color:var(--muted)}.lead{font-size:1.12rem;max-width:740px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-block;padding:11px 17px;border-radius:12px;background:var(--accent);color:#092018;text-decoration:none;font-weight:750}.btn.alt{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:16px;margin:24px 0 44px}.card{background:linear-gradient(150deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:20px}.card h3{margin:0 0 8px}.tag{color:var(--accent);font-size:.8rem;font-weight:700}.section{padding:24px 0 34px}.map{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:stretch}.node{padding:16px;border:1px solid #42617d;border-radius:14px;background:#14283d;text-align:center}.node strong{display:block;color:var(--accent)}.arrow{text-align:center;color:var(--blue);font-size:1.4rem}
+a{color:var(--blue)}li{margin:6px 0}.links a{display:block;padding:9px 0;border-bottom:1px solid var(--line)}.notice{border-left:4px solid var(--accent);padding:12px 16px;background:#102a2b;border-radius:0 12px 12px 0;color:#d9fff4}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);margin-top:40px}
+@media(max-width:650px){.map{grid-template-columns:1fr}.hero{padding-top:42px}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero"><div class="eyebrow">Learning Hub • Research × Data</div>
+<h1>Memahami jurnal. Mengolah data. Membangun bukti.</h1>
+<p class="lead">Ruang belajar mandiri berbahasa Indonesia untuk membaca penelitian secara kritis dan menerapkan Data Science melalui latihan yang dapat diverifikasi.</p>
+<div class="actions"><a class="btn" href="MASTER_PROMPT.md">Ambil Master Prompt</a><a class="btn alt" href="ROADMAP.md">Lihat Roadmap 12 Minggu</a></div></header>
+<section class="section"><h2>Jalur belajar utama</h2><div class="grid">
+<article class="card"><span class="tag">01 / RESEARCH</span><h3>Literasi jurnal</h3><p>Abstrak, pendahuluan, research gap, novelty, metode, hasil, pembahasan, dan kesimpulan.</p></article>
+<article class="card"><span class="tag">02 / METHODS</span><h3>Metodologi penelitian</h3><p>Kuantitatif, kualitatif, mixed methods, sampling, variabel, validitas, dan reliabilitas.</p></article>
+<article class="card"><span class="tag">03 / DATA</span><h3>Data Science</h3><p>Python, SQL, data cleaning, exploratory data analysis, statistik, dan visualisasi.</p></article>
+<article class="card"><span class="tag">04 / MODEL</span><h3>Machine Learning</h3><p>Regresi, klasifikasi, clustering, evaluasi, overfitting, dan data leakage.</p></article>
+</div></section>
+<section class="section"><h2>Mind map ringkas</h2><div class="card">
+<div class="map">
+<div class="node"><strong>JURNAL</strong>Masalah • teori • gap</div><div class="node"><strong>METODE</strong>Desain • sampel • instrumen</div><div class="node"><strong>DATA</strong>Sumber • kualitas • preprocessing</div>
+</div><div class="arrow">↓ &nbsp; ↓ &nbsp; ↓</div>
+<div class="node"><strong>ANALISIS</strong>Statistik • Python • SQL • Machine Learning</div><div class="arrow">↓</div>
+<div class="node"><strong>EVALUASI KRITIS</strong>Validitas • bias • metrik • keterbatasan</div><div class="arrow">↓</div>
+<div class="node"><strong>OUTPUT ILMIAH</strong>Kesimpulan • sitasi • proposal • artikel</div>
+</div></section>
+<section class="section"><h2>File latihan dan panduan</h2><div class="grid">
+<article class="card"><h3>Roadmap 12 minggu</h3><p>Urutan materi dan hasil latihan tiap minggu.</p><a href="ROADMAP.md">Buka roadmap →</a></article>
+<article class="card"><h3>Checklist review jurnal</h3><p>Periksa kualitas sumber, metode, data, analisis, dan kesimpulan.</p><a href="JOURNAL_REVIEW_CHECKLIST.md">Buka checklist →</a></article>
+<article class="card"><h3>Python starter</h3><p>Mulai membaca CSV, mengecek missing values, duplikasi, dan distribusi.</p><a href="PYTHON_STARTER.py">Unduh skrip Python →</a></article>
+<article class="card"><h3>Master prompt</h3><p>Instruksi tutor AI untuk membimbing belajar dan mengkritisi jurnal.</p><a href="MASTER_PROMPT.md">Buka prompt →</a></article>
+</div></section>
+<section class="section"><h2>Direktori sumber belajar</h2><div class="card links">
+<a href="https://doaj.org/" target="_blank" rel="noreferrer">DOAJ — jurnal akses terbuka</a>
+<a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar — pencarian literatur</a>
+<a href="https://www.semanticscholar.org/" target="_blank" rel="noreferrer">Semantic Scholar — penelusuran paper</a>
+<a href="https://search.crossref.org/" target="_blank" rel="noreferrer">Crossref — verifikasi metadata DOI</a>
+<a href="https://archive.ics.uci.edu/" target="_blank" rel="noreferrer">UCI — dataset pembelajaran</a>
+<a href="https://www.kaggle.com/datasets" target="_blank" rel="noreferrer">Kaggle — dataset dan praktik</a>
+</div></section>
+<section class="section"><h2>AI writing detector: gunakan dengan hati-hati</h2><div class="grid">
+<article class="card"><h3>GPTZero</h3><p>Alat estimasi pola teks AI.</p><a href="https://gptzero.me/" target="_blank" rel="noreferrer">Buka GPTZero →</a></article>
+<article class="card"><h3>Copyleaks</h3><p>Pemeriksaan AI dan kemiripan teks.</p><a href="https://copyleaks.com/ai-content-detector" target="_blank" rel="noreferrer">Buka Copyleaks →</a></article>
+<article class="card"><h3>Turnitin</h3><p>AI Writing Report tersedia melalui institusi yang berlangganan.</p><a href="https://www.turnitin.com/" target="_blank" rel="noreferrer">Buka Turnitin →</a></article>
+</div><p class="notice">Skor AI detector bukan bukti pasti kepengarangan. False positive dan false negative dapat terjadi. Jangan unggah naskah rahasia atau data pribadi ke layanan pihak ketiga tanpa izin. Gunakan draf, riwayat revisi, catatan riset, dan sitasi sebagai bukti proses akademik.</p></section>
+<footer>Belajar dengan rasa ingin tahu, verifikasi sumber, dan tulis dengan integritas akademik.</footer>
+</main></body></html>
